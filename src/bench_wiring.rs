@@ -12,6 +12,7 @@ pub fn bench<T: Wiring + Unwiring + PartialEq>(name: &'static str, c: &mut Crite
         b.iter(|| black_box(BufWire::new(&mut wire).wire(black_box(data)).unwrap()))
     });
 
+    wire.clear();
     wire.sync_wire(data).unwrap();
 
     let buffer = wire.as_slice();
